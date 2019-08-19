@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Consumer Movie Catalogue</string>
+    <string name="category_tv_show">TV Show</string>
+    <string name="category_movie">Movie</string>
+    <string name="change_language">Change Language</string>
+
 </resources>

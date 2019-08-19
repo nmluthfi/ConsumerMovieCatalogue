@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Consumer Movie Catalogue</string>
+    <string name="category_tv_show">Serial TV</string>
+    <string name="category_movie">Film</string>
+
+</resources>
