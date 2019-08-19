@@ -1,15 +1,14 @@
-package com.android.consumermoviecatalogue;
+package com.android.consumermoviecatalogue.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import com.android.consumermoviecatalogue.R;
+import com.android.consumermoviecatalogue.adapter.MainActivityAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         initView();
         initActionBar();
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.viewpager);
 
 
-        MainActivityFragmentAdapter adapter = new MainActivityFragmentAdapter(this,
+        MainActivityAdapter adapter = new MainActivityAdapter(this,
                 getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
@@ -41,23 +43,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.tv_show);
         tabLayout.getTabAt(1).setIcon(R.drawable.video_camera);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-       setSupportActionBar(toolbar);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_settings) {
-            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-            startActivity(mIntent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
