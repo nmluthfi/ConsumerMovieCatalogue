@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.consumermoviecatalogue.R;
-import com.android.consumermoviecatalogue.adapter.MainActivityAdapter;
+import com.android.consumermoviecatalogue.adapter.tab_layout.MainActivityAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

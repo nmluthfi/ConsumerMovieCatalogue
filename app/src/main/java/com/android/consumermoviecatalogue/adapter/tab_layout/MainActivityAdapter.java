@@ -1,4 +1,4 @@
-package com.android.consumermoviecatalogue.adapter;
+package com.android.consumermoviecatalogue.adapter.tab_layout;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

@@ -4,4 +4,8 @@
     <string name="category_movie">Movie</string>
 
     <string name="change_language">Change language</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="user_score">/10</string>
+    <string name="err_msg_load_data">Failed load data</string>
+    <string name="empty_favorite_movie">There is no favorite movie. Try add some!</string>
 </resources>
