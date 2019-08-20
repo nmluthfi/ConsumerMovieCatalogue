@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import com.android.consumermoviecatalogue.R;
 import com.android.consumermoviecatalogue.adapter.recycler_view.MovieAdapter;
-import com.android.consumermoviecatalogue.database.MovieContract.MovieColumns;
+import com.android.consumermoviecatalogue.database.movie.MovieContract.MovieColumns;
 import com.android.consumermoviecatalogue.interfaces.LoadMovieCallback;
 import com.android.consumermoviecatalogue.model.Movie;
 
@@ -95,11 +95,6 @@ public class MovieFragment extends Fragment implements LoadMovieCallback {
                 movieAdapter.setmData(list);
             }
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
     }
 
     @Override

@@ -22,8 +22,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.consumermoviecatalogue.R;
-import com.android.consumermoviecatalogue.database.MovieContract.MovieColumns;
+import com.android.consumermoviecatalogue.database.movie.MovieContract.MovieColumns;
+import com.android.consumermoviecatalogue.database.tv_show.TvShowContract.TvColumns;
 import com.android.consumermoviecatalogue.model.Movie;
+import com.android.consumermoviecatalogue.model.TvShow;
 import com.android.consumermoviecatalogue.utils.GenreChecks;
 import com.bumptech.glide.Glide;
 
@@ -33,7 +35,7 @@ public class ItemDetailActivity extends AppCompatActivity {
             EXTRA_CATEGORY = "extra_category";
 
     private Movie movie;
-//    private TvShow tvShow;
+    private TvShow tvShow;
 
     private TextView tvTitle, tvDescription, tvUserScore, tvDateOfRelease, tvFailedLoadData, tvGenre;
     private ImageView ivBackdrop;
@@ -56,18 +58,16 @@ public class ItemDetailActivity extends AppCompatActivity {
         Intent intentThatStartThisActivity = getIntent();
         if (intentThatStartThisActivity != null) {
             movie = intentThatStartThisActivity.getParcelableExtra(EXTRA_MOVIE);
-//            tvShow = intentThatStartThisActivity.getParcelableExtra(EXTRA_TV_SHOW);
+            tvShow = intentThatStartThisActivity.getParcelableExtra(EXTRA_TV_SHOW);
             cateogry = intentThatStartThisActivity.getStringExtra(EXTRA_CATEGORY);
             Log.d("cateogry: ", cateogry);
 
             pbLoadData.setVisibility(View.VISIBLE);
             if (movie != null) {
                 showMovieData(movie);
-            }
-//            else if (tvShow != null) {
-//                showTvShowData(tvShow);
-//            }
-        else {
+            } else if (tvShow != null) {
+                showTvShowData(tvShow);
+            } else {
                 tvFailedLoadData.setVisibility(View.VISIBLE);
             }
         }
@@ -82,7 +82,7 @@ public class ItemDetailActivity extends AppCompatActivity {
                     if (cateogry.equalsIgnoreCase("movie")) {
                         movie = new Movie(cursor);
                     } else if (cateogry.equalsIgnoreCase("Tv Show")) {
-//                        tvShow = new TvShow(cursor);
+                        tvShow = new TvShow(cursor);
                     }
                 }
                 cursor.close();
@@ -95,37 +95,36 @@ public class ItemDetailActivity extends AppCompatActivity {
         super.onStart();
         if (movie != null) {
             isAlreadyLoved = true;
+        } else if (tvShow != null) {
+            isAlreadyLoved = true;
         }
-//        else if (tvShow != null) {
-//            isAlreadyLoved = true;
-//        }
         Log.d("IsAlreadyLove", String.valueOf(isAlreadyLoved));
     }
 
-//    private void showTvShowData(final TvShow tvShow) {
-//        tvTitle.setText(tvShow.getTitle());
-//        tvDescription.setText(tvShow.getDescription());
-//        tvUserScore.setText(String.format("%s" + getString(R.string.user_score), tvShow.getUserScore()));
-//        tvDateOfRelease.setText(tvShow.getDateOfFirstAir());
-//        tvGenre.setText(GenreChecks.MovieGenre(tvShow.getGenreId()));
-//
-//        Glide.with(this)
-//                .load(tvShow.getBackdropPhoto())
-//                .into(ivBackdrop);
-//
-//        ActionBar actionBar = getSupportActionBar();
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setTitle(tvShow.getTitle());
-//        }
-//
-//        ivBackdrop.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showFullscreenPhoto(tvShow.getBackdropPhoto());
-//            }
-//        });
-//    }
+    private void showTvShowData(final TvShow tvShow) {
+        tvTitle.setText(tvShow.getTitle());
+        tvDescription.setText(tvShow.getDescription());
+        tvUserScore.setText(String.format("%s" + getString(R.string.user_score), tvShow.getUserScore()));
+        tvDateOfRelease.setText(tvShow.getDateOfFirstAir());
+        tvGenre.setText(GenreChecks.MovieGenre(tvShow.getGenreId()));
+
+        Glide.with(this)
+                .load(tvShow.getBackdropPhoto())
+                .into(ivBackdrop);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(tvShow.getTitle());
+        }
+
+        ivBackdrop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFullscreenPhoto(tvShow.getBackdropPhoto());
+            }
+        });
+    }
 
     private void showMovieData(final Movie movie) {
         tvTitle.setText(movie.getTitle());
@@ -193,10 +192,13 @@ public class ItemDetailActivity extends AppCompatActivity {
             } else if (cateogry.equalsIgnoreCase("Tv Show")) {
                 if (isAlreadyLoved) {
                     isAlreadyLoved = false;
-//                    unFavoriteTvShow();
+                    unFavoriteTvShow();
                     setFavorite();
                 }
             }
+            return true;
+        } else if (item.getItemId() == android.R.id.home) {
+            openMainActivity();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -211,10 +213,20 @@ public class ItemDetailActivity extends AppCompatActivity {
         }
     }
 
-    private void unFavoriteMovie(){
+    private void unFavoriteMovie() {
         Uri uri = getIntent().getData();
         resolver.delete(uri, null, null);
         resolver.notifyChange(MovieColumns.CONTENT_URI, new MovieFragment.DataObserver(new Handler(), ItemDetailActivity.this));
+    }
+
+    private void unFavoriteTvShow() {
+        Uri uri = getIntent().getData();
+        resolver.delete(uri, null, null);
+        resolver.notifyChange(TvColumns.CONTENT_URI, new TvShowFragment.DataObserver(new Handler(), ItemDetailActivity.this));
+    }
+
+    private void openMainActivity() {
+        startActivity(new Intent(ItemDetailActivity.this, MainActivity.class));
     }
 
     private void initComponent() {
