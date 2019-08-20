@@ -38,6 +38,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center"
+        android:visibility="gone"
         android:text="@string/empty_favorite_movie"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

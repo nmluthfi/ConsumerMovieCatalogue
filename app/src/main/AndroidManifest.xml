@@ -3,8 +3,8 @@
     package="com.android.consumermoviecatalogue">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.android.example.moviewcatalogue.READ_DATABASE" />
-    <uses-permission android:name="com.android.example.moviewcatalogue.WRITE_DATABASE" />
+    <uses-permission android:name="com.android.example.moviewcatalogue.database.MovieTvShowProvider.READ_DATABASE" />
+    <uses-permission android:name="com.android.example.moviewcatalogue.database.MovieTvShowProvider.WRITE_DATABASE" />
 
     <application
         android:allowBackup="true"

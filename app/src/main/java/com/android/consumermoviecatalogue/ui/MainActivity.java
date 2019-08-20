@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.consumermoviecatalogue.R;
-import com.android.consumermoviecatalogue.adapter.tab_layout.MainActivityAdapter;
+import com.android.consumermoviecatalogue.adapter.tab_layout.MainActivityFragmentAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.viewpager);
 
 
-        MainActivityAdapter adapter = new MainActivityAdapter(this,
+        MainActivityFragmentAdapter adapter = new MainActivityFragmentAdapter(this,
                 getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 

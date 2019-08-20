@@ -1,9 +1,13 @@
-package com.android.consumermoviecatalogue;
+package com.android.consumermoviecatalogue.adapter.tab_layout;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.android.consumermoviecatalogue.R;
+import com.android.consumermoviecatalogue.ui.MovieFragment;
+import com.android.consumermoviecatalogue.ui.TvShowFragment;
 
 public class MainActivityFragmentAdapter extends FragmentPagerAdapter {
 

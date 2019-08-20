@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
 public class MovieContract {
 
     private static final String SCHEME = "content";
-    public static final String AUTHORITY = "com.android.example.moviewcatalogue";
+    public static final String AUTHORITY = "com.android.example.moviewcatalogue.database";
 
     public static String TABLE_MOVIE = "movie";
 
