@@ -8,4 +8,9 @@
     <string name="user_score">/10</string>
     <string name="err_msg_load_data">Failed load data</string>
     <string name="empty_favorite_movie">There is no favorite movie. Try add some!</string>
+    <string name="backdrop">backdrop</string>
+    <string name="sinopsys">Synopsys</string>
+    <string name="date_of_release">Date of Release</string>
+    <string name="genre">Genre</string>
+    <string name="category_favorite">Favorite</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.android.consumermoviecatalogue.adapter.recycler_view;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.consumermoviecatalogue.R;
+import com.android.consumermoviecatalogue.database.MovieContract.MovieColumns;
 import com.android.consumermoviecatalogue.model.Movie;
+import com.android.consumermoviecatalogue.ui.ItemDetailActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -72,13 +76,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     private void openItemDetailActivity(Movie movie, int position) {
-//        Intent startMoveDetailActivityyIntent = new Intent(mContext, ItemDetailActivity.class);
-//
-//        Uri uri = Uri.parse(MovieColumns.CONTENT_URI + "/" + getmData().get(position).getId());
-//        startMoveDetailActivityyIntent.setData(uri);
-//        startMoveDetailActivityyIntent.putExtra(ItemDetailActivity.EXTRA_MOVIE, movie);
-//        startMoveDetailActivityyIntent.putExtra(ItemDetailActivity.EXTRA_CATEGORY, "Movie");
-//        mContext.startActivity(startMoveDetailActivityyIntent);
+        Intent startMoveDetailActivityyIntent = new Intent(activity, ItemDetailActivity.class);
+
+        Uri uri = Uri.parse(MovieColumns.CONTENT_URI + "/" + getmData().get(position).getId());
+        startMoveDetailActivityyIntent.setData(uri);
+        startMoveDetailActivityyIntent.putExtra(ItemDetailActivity.EXTRA_MOVIE, movie);
+        startMoveDetailActivityyIntent.putExtra(ItemDetailActivity.EXTRA_CATEGORY, "Movie");
+        activity.startActivity(startMoveDetailActivityyIntent);
     }
 
     public void filterList(ArrayList<Movie> filterdNames) {

@@ -19,7 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.consumermoviecatalogue.R;
 import com.android.consumermoviecatalogue.adapter.recycler_view.MovieAdapter;
@@ -123,14 +122,12 @@ public class MovieFragment extends Fragment implements LoadMovieCallback {
                 tvEmptyState.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
                 movieAdapter.setmData(new ArrayList<Movie>());
-                Toast.makeText(getContext(), "Tidak Ada data saat ini", Toast.LENGTH_SHORT).show();
                 Log.d("MOVIE NULL", " MOVIE NULL");
             }
         } else {
             tvEmptyState.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
             movieAdapter.setmData(new ArrayList<Movie>());
-            Toast.makeText(getContext(), "Tidak Ada data saat ini", Toast.LENGTH_SHORT).show();
             Log.d("MOVIE NULL", " MOVIE NULL");
         }
         Log.d("postExecute", "postExecute");
